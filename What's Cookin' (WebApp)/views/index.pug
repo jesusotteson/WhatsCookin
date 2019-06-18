@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  each venue in venues
+    a(href="venues/" + venue.venue.id)
+      .card.mb-2: .card-body
+        h4 #{venue.venue.name}
+        p #{venue.venue.location.formattedAddress[0]}
