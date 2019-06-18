@@ -1,25 +1,33 @@
-const express = require("express"),
-      router  = express.Router()
-const fetch = require("node-fetch")
+const express  = require("express"),
+      router   = express.Router(),
+      fetch    = require("node-fetch"),
+      location = require("../location.config"),
+      auth     = require("../auth.config")
 
 /* GET home page. */
-router.get("/", function (req, res, next) {
-    const clientID       = "5DJBXJWUMPLNUCXGU5CQPHMHB54RRB3NIM3PTFH5KIQ2X5W5",
-          clientSecret   = "P4V2QNB5XKBSQAFD42RGTW2AP2W2ZJ23HGP13M4XT0ISQGR2",
-          lat            = "40.670020",
-          long           = "-111.945190",
-          limit          = 5,
-          authentication = `client_id=${clientID}&client_secret=${clientSecret}&v=20180323`,
-          url            = `https://api.foursquare.com/v2/venues/explore?${authentication}&limit=${limit}&ll=${lat},${long}&section=food`
-
+router.get("/:id?", function (req, res) {
+    let query = "Food"
+    if (req.params.id)
+        query = req.params.id
+    const url = generateQueryURL(query)
     fetch(url)
-        .then(res => res.json())
-        .then(json => json.response.groups[0].items)
-        .then(venues => {
-            console.log(url)
-            res.render("index", {title: "Express", venues: venues})
-        })
-
+        .then(res => res.json()) // convert response to json
+        .then(json => json.response.groups[0].items) // narrow response to just the venues
+        .then(venues => res.render("index", {venues: venues})) // pass the venues data
 })
+
+router.post("/:id?", (req, res) => {
+    res.redirect(`/${req.body.query}`)
+})
+
+function generateQueryURL(query) {
+    const baseURL  = "https://api.foursquare.com/v2/venues/explore",
+          clientID = `client_id=${auth.id}`,
+          secret   = `client_secret=${auth.secret}`,
+          version  = `v=${auth.version}`,
+          longLat  = `ll=${location.lat},${location.long}`
+
+    return `${baseURL}?${clientID}&${secret}&${version}&${longLat}&query=${query}`
+}
 
 module.exports = router
