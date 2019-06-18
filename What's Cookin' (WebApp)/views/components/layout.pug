@@ -1,0 +1,16 @@
+doctype html
+html
+    head
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible" content="IE=edge")
+    meta(name="viewport", content="width=device-width,minimum-scale=1,initial-scale=1,maximum-scale=1,user-scalable=0")
+    title= title
+    link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    body
+        main.default
+            include ../includes/navbar
+            div.container-fluid
+                block content
+        include ../includes/footer
+        include ../includes/scripts

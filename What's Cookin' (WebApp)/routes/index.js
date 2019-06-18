@@ -10,7 +10,7 @@ router.get("/", function (req, res, next) {
           long           = "-111.945190",
           limit          = 5,
           authentication = `client_id=${clientID}&client_secret=${clientSecret}&v=20180323`,
-          url     = `https://api.foursquare.com/v2/venues/explore?${authentication}&limit=${limit}&ll=${lat},${long}&section=food`
+          url            = `https://api.foursquare.com/v2/venues/explore?${authentication}&limit=${limit}&ll=${lat},${long}&section=food`
 
     fetch(url)
         .then(res => res.json())

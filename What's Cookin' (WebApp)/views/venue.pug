@@ -1,7 +1,18 @@
-extends layout
+extends components/layout
 
 block content
-  h1= title
-  p Welcome to #{title}
-  .card.mb-2: .card-body
-    h4 #{details.venue.name}
+  - var venue = details.venue
+  - var photo = venue.bestPhoto
+
+  .row.mt-2: .col: nav(aria-label="breadcrumb"): ol.breadcrumb.m-0.bg-transparent.pl-0
+    li.breadcrumb-item: a(href="/") Home
+    li.breadcrumb-item.active(aria-current="page")= title
+
+  .row: .col
+    h1.h3= title + " (" + venue.rating + "/10" + ")"
+    p.mb-0.h6.font-weight-light.font-italic= venue.location.address
+    p.mt-0.mb-3.h6.font-weight-light.font-italic= venue.location.city + ", " + venue.location.state + " " + venue.location.postalCode
+    p: img.img-fluid(src=photo.prefix + "500x300" + photo.suffix)
+    p #{venue.description}
+    if venue.url
+      p: a(href=venue.url) Website
