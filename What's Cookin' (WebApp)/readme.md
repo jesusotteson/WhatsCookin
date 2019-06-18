@@ -6,5 +6,5 @@
 If you get this error, it likely means that you don't have node and npm installed on your computer. You can install it [here](https://nodejs.org/en/download/)
 
 ## Screenshots
-![Homepage](/screenshots/home.png)
-![Venue](/screenshots/venue.png)
+<img src="/screenshots/home.png" alt="Homepage" width="300"/>
+<img src="/screenshots/venue.png" alt="Venue" width="300"/>
