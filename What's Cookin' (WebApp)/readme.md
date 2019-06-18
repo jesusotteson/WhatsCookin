@@ -6,4 +6,5 @@
 If you get this error, it likely means that you don't have node and npm installed on your computer. You can install it [here](https://nodejs.org/en/download/)
 
 ## Screenshots
-<blockquote class="imgur-embed-pub" lang="en" data-id="a/xDi9zoo"><a href="//imgur.com/a/xDi9zoo"></a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
+![Homepage](/screenshots/home.png)
+![Venue](/screenshots/venue.png)
